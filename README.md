@@ -1,36 +1,31 @@
-# RecordHub - Smart Record Management System
+# RecordHub
 
 <div align="center">
 
-![RecordHub Logo](https://img.shields.io/badge/RecordHub-Record%20Management-black?style=for-the-badge)
+![RecordHub](https://img.shields.io/badge/RecordHub-Record%20Management-black?style=for-the-badge)
 
-A modern and secure record management system built with Next.js 16, PostgreSQL, Prisma, and shadcn/ui.
+A full-stack record management application built for the **House of EdTech Full Stack Developer Assignment**.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat-square&logo=postgresql)](https://www.postgresql.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-[Demo](#) · [Documentation](#documentation) · [Report Bug](https://github.com/officialsayandeeppaul/recordhub/issues) · [Request Feature](https://github.com/officialsayandeeppaul/recordhub/issues)
+[Live Demo](https://record-hub.vercel.app) · [GitHub](https://github.com/officialsayandeeppaul/RecordHub)
 
 </div>
 
 ---
 
-## ✨ Features
+## Features
 
-| Feature | Description |
-|---------|-------------|
-| 📝 **Full CRUD Operations** | Create, Read, Update, and Delete records with robust validation |
-| 🔐 **Authentication** | Secure JWT-based authentication with NextAuth.js (credentials + OAuth) |
-| 📁 **Categories** | Organize records with custom categories, colors, and icons |
-| 🔍 **Advanced Search** | Powerful search and filtering capabilities |
-| 📊 **Dashboard** | Beautiful analytics dashboard with stats and recent activity |
-| 📱 **Responsive Design** | Mobile-first design with shadcn/ui components |
-| 🔍 **Search & Filter** | Advanced search and filtering by status, priority, category |
-| ⏰ **Due Date Tracking** | Track upcoming deadlines with visual indicators |
-| 👤 **Profile & Settings** | User profile management and app settings |
+- **Full CRUD Operations** - Create, read, update, and delete records with validation
+- **User Authentication** - Secure sign up/sign in with NextAuth.js and bcrypt password hashing
+- **Categories** - Organize records with custom categories, colors, and icons
+- **Search & Filter** - Filter records by status, priority, category, and search by title
+- **Dashboard** - Overview of your records with statistics
+- **Responsive Design** - Works on desktop and mobile devices
+- **Due Date Tracking** - Set and track deadlines for your records
 
 ## 🛠️ Tech Stack
 
@@ -216,7 +211,6 @@ model Record {
   dueDate     DateTime?
   tags        String[]
   category    Category?
-  aiInsights  AIInsight[]
 }
 
 model Category {
@@ -288,19 +282,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 👨‍💻 Author
-
-<div align="center">
+## Author
 
 **Sayandeep Paul**
 
-*SDE-1 at Anotech India Solutions (Ex)*
-
-[![GitHub](https://img.shields.io/badge/GitHub-officialsayandeeppaul-black?style=flat-square&logo=github)](https://github.com/officialsayandeeppaul)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sayandeep%20Paul-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/sayandeeppaul)
+- GitHub: [github.com/officialsayandeeppaul](https://github.com/officialsayandeeppaul)
+- LinkedIn: [linkedin.com/in/sayandeeppaul](https://linkedin.com/in/sayandeeppaul)
 
 ---
 
-Built with ❤️ using Next.js 16
-
-</div>
+*Built for House of EdTech Full Stack Developer Assignment - December 2024*
