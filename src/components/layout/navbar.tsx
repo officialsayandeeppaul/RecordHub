@@ -58,7 +58,7 @@ export function Navbar() {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-black">
               <FileText className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-black">RecordHub</span>
+            <span className="text-xl font-bold text-foreground">RecordHub</span>
           </Link>
 
           {session && (
