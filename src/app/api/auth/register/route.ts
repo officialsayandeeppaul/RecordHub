@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { signUpSchema } from "@/lib/validations/auth";
-import { sendEmail, getWelcomeEmailTemplate } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,13 +44,6 @@ export async function POST(request: NextRequest) {
         createdAt: true,
       },
     });
-
-    // Send welcome email (non-blocking)
-    sendEmail({
-      to: email,
-      subject: "Welcome to RecordHub!",
-      html: getWelcomeEmailTemplate(name),
-    }).catch((err) => console.error("Failed to send welcome email:", err));
 
     return NextResponse.json(
       { message: "User created successfully", user },
