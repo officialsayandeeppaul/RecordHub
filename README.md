@@ -59,6 +59,13 @@ DATABASE_URL="postgresql://user:password@localhost:5432/recordhub?schema=public"
 AUTH_SECRET="your-super-secret-key-min-32-chars"
 AUTH_URL="http://localhost:3000"
 
+# Email (SMTP)
+SMTP_HOST="smtp.gmail.com"
+SMTP_PORT=587
+SMTP_USER="your-email@gmail.com"
+SMTP_PASS="your-app-password"
+SMTP_FROM_NAME="RecordHub"
+SMTP_FROM_EMAIL="noreply@recordhub.app"
 ```
 
 ### Installation

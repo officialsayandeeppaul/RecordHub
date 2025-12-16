@@ -33,7 +33,7 @@ import { RecordList } from "@/components/records/record-list";
 import { RecordForm } from "@/components/records/record-form";
 import { useRecords, Record } from "@/lib/hooks/use-records";
 import { useCategories } from "@/lib/hooks/use-categories";
-import { Plus, Search, X } from "lucide-react";
+import { Plus, Search, X, Download } from "lucide-react";
 import { toast } from "sonner";
 
 function RecordsContent() {
@@ -134,6 +134,34 @@ function RecordsContent() {
     }
   };
 
+  const handleExportCSV = () => {
+    if (records.length === 0) {
+      toast.error("No records to export");
+      return;
+    }
+
+    const headers = ["Title", "Description", "Status", "Priority", "Category", "Due Date", "Tags", "Created At"];
+    const csvContent = [
+      headers.join(","),
+      ...records.map((record) => [
+        `"${record.title.replace(/"/g, '""')}"`,
+        `"${(record.description || "").replace(/"/g, '""')}"`,
+        record.status,
+        record.priority,
+        record.category?.name || "Uncategorized",
+        record.dueDate ? new Date(record.dueDate).toLocaleDateString() : "",
+        `"${record.tags.join(", ")}"`,
+        new Date(record.createdAt).toLocaleDateString(),
+      ].join(","))
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `records-${new Date().toISOString().split("T")[0]}.csv`;
+    link.click();
+    toast.success("Records exported successfully");
+  };
 
   if (status === "loading") {
     return null;
@@ -151,10 +179,16 @@ function RecordsContent() {
               Manage and organize all your records
             </p>
           </div>
-          <Button onClick={() => setIsCreateOpen(true)} className="gap-2">
-            <Plus className="h-4 w-4" />
-            New Record
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={handleExportCSV} className="gap-2">
+              <Download className="h-4 w-4" />
+              Export CSV
+            </Button>
+            <Button onClick={() => setIsCreateOpen(true)} className="gap-2">
+              <Plus className="h-4 w-4" />
+              New Record
+            </Button>
+          </div>
         </div>
 
         <div className="flex flex-col gap-4 md:flex-row md:items-center">

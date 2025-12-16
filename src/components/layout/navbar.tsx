@@ -23,7 +23,10 @@ import {
   LogOut,
   User,
   Settings,
+  Moon,
+  Sun,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -35,10 +38,11 @@ const navItems = [
 export function Navbar() {
   const { data: session, status } = useSession();
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
 
   if (status === "loading") {
     return (
-      <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex h-16 items-center">
           <div className="h-8 w-32 animate-pulse rounded-lg bg-gray-100" />
         </div>
@@ -47,7 +51,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 flex h-16 items-center justify-between">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-3">
@@ -83,6 +87,16 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="rounded-lg"
+          >
+            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
           {session ? (
             <>
               <Sheet>
@@ -119,7 +133,10 @@ export function Navbar() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                     <Avatar className="h-9 w-9">
-                      <AvatarImage src={session.user?.image || ""} alt={session.user?.name || ""} />
+                      <AvatarImage 
+                        src={session.user?.image || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(session.user?.name || session.user?.email || "User")}`} 
+                        alt={session.user?.name || ""} 
+                      />
                       <AvatarFallback>
                         {session.user?.name?.charAt(0).toUpperCase() || "U"}
                       </AvatarFallback>
