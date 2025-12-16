@@ -6,10 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Settings, Bell, Shield, Trash2, LogOut } from "lucide-react";
+import { Settings, LogOut, User } from "lucide-react";
 
 export default function SettingsPage() {
   const { data: session, status } = useSession();
@@ -43,37 +40,26 @@ export default function SettingsPage() {
             Settings
           </h1>
           <p className="text-muted-foreground">
-            Manage your account preferences
+            Manage your account
           </p>
         </div>
 
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Bell className="h-5 w-5" />
-              Notifications
+              <User className="h-5 w-5" />
+              Account
             </CardTitle>
-            <CardDescription>Configure how you receive notifications</CardDescription>
+            <CardDescription>Your account information</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label htmlFor="email-notifications">Email Notifications</Label>
-                <p className="text-sm text-muted-foreground">
-                  Receive email updates about your records
-                </p>
-              </div>
-              <Switch id="email-notifications" defaultChecked />
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">Name</p>
+              <p className="font-medium">{session.user?.name || "Not set"}</p>
             </div>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div>
-                <Label htmlFor="due-date-reminders">Due Date Reminders</Label>
-                <p className="text-sm text-muted-foreground">
-                  Get notified before records are due
-                </p>
-              </div>
-              <Switch id="due-date-reminders" defaultChecked />
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">Email</p>
+              <p className="font-medium">{session.user?.email}</p>
             </div>
           </CardContent>
         </Card>
@@ -81,33 +67,12 @@ export default function SettingsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Shield className="h-5 w-5" />
-              Privacy & Security
+              <LogOut className="h-5 w-5" />
+              Session
             </CardTitle>
-            <CardDescription>Manage your security settings</CardDescription>
+            <CardDescription>Manage your current session</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label htmlFor="two-factor">Two-Factor Authentication</Label>
-                <p className="text-sm text-muted-foreground">
-                  Add an extra layer of security
-                </p>
-              </div>
-              <Switch id="two-factor" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border-red-200">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-red-600">
-              <Trash2 className="h-5 w-5" />
-              Danger Zone
-            </CardTitle>
-            <CardDescription>Irreversible actions</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent>
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-medium">Sign Out</p>
@@ -122,18 +87,6 @@ export default function SettingsPage() {
               >
                 <LogOut className="h-4 w-4" />
                 Sign Out
-              </Button>
-            </div>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium text-red-600">Delete Account</p>
-                <p className="text-sm text-muted-foreground">
-                  Permanently delete your account and all data
-                </p>
-              </div>
-              <Button variant="destructive" disabled>
-                Delete Account
               </Button>
             </div>
           </CardContent>
