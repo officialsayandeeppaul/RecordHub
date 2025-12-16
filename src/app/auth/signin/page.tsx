@@ -108,12 +108,19 @@ function SignInForm() {
             </form>
           </Form>
 
-          <p className="text-center text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
-            <Link href="/auth/signup" className="font-medium text-primary hover:underline">
-              Sign up
-            </Link>
-          </p>
+          <div className="text-center text-sm text-muted-foreground space-y-2">
+            <p>
+              <Link href="/auth/forgot-password" className="font-medium text-primary hover:underline">
+                Forgot your password?
+              </Link>
+            </p>
+            <p>
+              Don&apos;t have an account?{" "}
+              <Link href="/auth/signup" className="font-medium text-primary hover:underline">
+                Sign up
+              </Link>
+            </p>
+          </div>
         </CardContent>
       </Card>
     </div>

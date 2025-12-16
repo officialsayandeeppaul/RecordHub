@@ -23,7 +23,7 @@ export default function ApiDocsPage() {
             <CardTitle>Base URL</CardTitle>
           </CardHeader>
           <CardContent>
-            <code className="bg-gray-100 px-4 py-2 rounded-lg block">
+            <code className="bg-muted text-foreground px-4 py-2 rounded-lg block">
               https://your-domain.com/api
             </code>
           </CardContent>
@@ -44,7 +44,7 @@ export default function ApiDocsPage() {
             <CardContent className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2">Request Body</h4>
-                <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
 {`{
   "name": "John Doe",
   "email": "john@example.com",
@@ -55,7 +55,7 @@ export default function ApiDocsPage() {
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Response (201)</h4>
-                <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
 {`{
   "id": "clx123...",
   "name": "John Doe",
@@ -138,7 +138,7 @@ export default function ApiDocsPage() {
             <CardContent className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2">Request Body</h4>
-                <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
 {`{
   "title": "My Record",
   "description": "Optional description",
@@ -222,7 +222,7 @@ export default function ApiDocsPage() {
             <CardContent className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2">Request Body</h4>
-                <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
 {`{
   "name": "Work Projects",
   "description": "Work-related records",
@@ -250,7 +250,7 @@ export default function ApiDocsPage() {
             <CardContent className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2">Response</h4>
-                <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
 {`{
   "overview": {
     "totalRecords": 25,
