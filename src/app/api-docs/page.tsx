@@ -65,6 +65,95 @@ export default function ApiDocsPage() {
               </div>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <Badge className="bg-green-600">POST</Badge>
+                <code className="text-lg">/auth/forgot-password</code>
+              </div>
+              <CardDescription>Request a password reset email</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Request Body</h4>
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
+{`{
+  "email": "john@example.com"
+}`}
+                </pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Response (200)</h4>
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
+{`{
+  "message": "If an account exists, a password reset email has been sent"
+}`}
+                </pre>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Note: Always returns success to prevent email enumeration attacks. Reset link expires in 1 hour.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <Badge className="bg-green-600">POST</Badge>
+                <code className="text-lg">/auth/reset-password</code>
+              </div>
+              <CardDescription>Reset password using token from email</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Request Body</h4>
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
+{`{
+  "token": "abc123...",
+  "password": "newSecurePassword123"
+}`}
+                </pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Response (200)</h4>
+                <pre className="bg-muted text-foreground p-4 rounded-lg overflow-x-auto text-sm">
+{`{
+  "message": "Password reset successfully"
+}`}
+                </pre>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Error Responses</h4>
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2">Code</th>
+                      <th className="text-left py-2">Error</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b">
+                      <td className="py-2"><code>400</code></td>
+                      <td>Token and password are required</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2"><code>400</code></td>
+                      <td>Password must be at least 8 characters</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2"><code>400</code></td>
+                      <td>Invalid or expired reset link</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2"><code>400</code></td>
+                      <td>Reset link has expired. Please request a new one.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         {/* Records API */}
