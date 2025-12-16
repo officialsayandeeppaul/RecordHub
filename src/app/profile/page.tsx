@@ -57,7 +57,7 @@ export default function ProfilePage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="flex items-center gap-6">
-              <Avatar className="h-20 w-20">
+              <Avatar className="h-20 w-20 flex-shrink-0">
                 <AvatarImage 
                   src={session.user?.image || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(session.user?.name || session.user?.email || "User")}`} 
                   alt={session.user?.name || ""} 
@@ -66,9 +66,9 @@ export default function ProfilePage() {
                   {initials}
                 </AvatarFallback>
               </Avatar>
-              <div>
-                <h3 className="text-xl font-semibold">{session.user?.name}</h3>
-                <p className="text-muted-foreground">{session.user?.email}</p>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-xl font-semibold truncate">{session.user?.name}</h3>
+                <p className="text-muted-foreground truncate">{session.user?.email}</p>
               </div>
             </div>
 
@@ -81,11 +81,11 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-4 rounded-lg border">
-                <Mail className="h-5 w-5 text-muted-foreground" />
-                <div>
+              <div className="flex items-center gap-3 p-4 rounded-lg border overflow-hidden">
+                <Mail className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                <div className="min-w-0 flex-1">
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-medium">{session.user?.email || "Not set"}</p>
+                  <p className="font-medium break-all">{session.user?.email || "Not set"}</p>
                 </div>
               </div>
 
