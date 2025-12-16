@@ -58,7 +58,10 @@ export default function ProfilePage() {
           <CardContent className="space-y-6">
             <div className="flex items-center gap-6">
               <Avatar className="h-20 w-20">
-                <AvatarImage src={session.user?.image || ""} alt={session.user?.name || ""} />
+                <AvatarImage 
+                  src={session.user?.image || `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(session.user?.name || session.user?.email || "User")}`} 
+                  alt={session.user?.name || ""} 
+                />
                 <AvatarFallback className="text-xl bg-black text-white">
                   {initials}
                 </AvatarFallback>
