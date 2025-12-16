@@ -59,13 +59,6 @@ DATABASE_URL="postgresql://user:password@localhost:5432/recordhub?schema=public"
 AUTH_SECRET="your-super-secret-key-min-32-chars"
 AUTH_URL="http://localhost:3000"
 
-# Email (SMTP)
-SMTP_HOST="smtp.gmail.com"
-SMTP_PORT=587
-SMTP_USER="your-email@gmail.com"
-SMTP_PASS="your-app-password"
-SMTP_FROM_NAME="RecordHub"
-SMTP_FROM_EMAIL="noreply@recordhub.app"
 ```
 
 ### Installation
@@ -272,6 +265,61 @@ DATABASE_URL="your-production-database-url"
 AUTH_SECRET="your-production-secret-min-32-chars"
 AUTH_URL="https://your-domain.com"
 ```
+
+## 🧪 Testing
+
+### Testing Strategy
+
+RecordHub implements a comprehensive testing approach covering multiple layers:
+
+#### Unit Tests
+- **Validation schemas** - Zod schemas are tested for correct validation behavior
+- **Utility functions** - Helper functions in `lib/utils.ts` are unit tested
+- **Component logic** - Individual component behavior is tested in isolation
+
+#### Integration Tests
+- **API Routes** - All API endpoints are tested for correct request/response handling
+- **Database operations** - Prisma queries are tested against a test database
+- **Authentication flow** - Sign up, sign in, and session management are tested
+
+#### End-to-End Tests
+- **User journeys** - Complete workflows like creating records, managing categories
+- **Authentication** - Full sign up → sign in → protected route access
+- **CRUD operations** - Create, read, update, delete flows for records and categories
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+### Test Coverage Goals
+
+| Category | Target | Description |
+|----------|--------|-------------|
+| **API Routes** | 90%+ | All endpoints tested for success and error cases |
+| **Validation** | 100% | All Zod schemas fully tested |
+| **Components** | 80%+ | Key UI components tested |
+| **Auth Flow** | 100% | Complete authentication coverage |
+
+### Manual Testing Checklist
+
+- [ ] User can sign up with valid credentials
+- [ ] User can sign in and access dashboard
+- [ ] User can create, edit, and delete records
+- [ ] User can create, edit, and delete categories
+- [ ] Search and filter functionality works
+- [ ] Dark mode toggle works correctly
+- [ ] CSV export downloads correctly
+- [ ] Responsive design works on mobile
+- [ ] All form validations display proper errors
 
 ## 🤝 Contributing
 
