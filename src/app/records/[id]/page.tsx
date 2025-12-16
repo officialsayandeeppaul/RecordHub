@@ -15,6 +15,7 @@ import {
   Trash2,
   Calendar,
   Clock,
+  CheckCircle2,
 } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
@@ -88,6 +89,26 @@ export default function RecordDetailPage({ params }: { params: Promise<{ id: str
     }
   };
 
+  const handleMarkComplete = async () => {
+    try {
+      const response = await fetch(`/api/records/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "COMPLETED" }),
+      });
+
+      if (response.ok) {
+        const updatedRecord = await response.json();
+        setRecord(updatedRecord);
+        toast.success("Record marked as completed");
+      } else {
+        toast.error("Failed to update record");
+      }
+    } catch {
+      toast.error("Failed to update record");
+    }
+  };
+
   if (status === "loading" || loading) {
     return (
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
@@ -133,6 +154,12 @@ export default function RecordDetailPage({ params }: { params: Promise<{ id: str
                 <Edit className="h-4 w-4" />
               </Button>
             </Link>
+            {record.status !== "COMPLETED" && (
+              <Button onClick={handleMarkComplete} className="gap-2">
+                <CheckCircle2 className="h-4 w-4" />
+                Mark Complete
+              </Button>
+            )}
           </div>
         </div>
 
